@@ -40,8 +40,10 @@
           data: formData,
           success: function(d) {
             var results = "";
+            $("#results ul").empty();
             for (var i = 0; i < d.length; i++) {
               results = results + d[i] + "\n";
+
               $("#results ul").append(
                 '<li><a href="/getuser/' +
                   d[i] +
