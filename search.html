@@ -24,6 +24,9 @@
         font-size: 15px;
         font-weight: bold;
       }
+      li {
+        list-style-type: none;
+      }
     </style>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
@@ -45,11 +48,9 @@
               results = results + d[i] + "\n";
 
               $("#results ul").append(
-                '<li><a href="/getuser/' +
+                '<li><img  src="https://chart.googleapis.com/chart?chs=520x520&cht=qr&chl=http://71fba528.ngrok.io/getUser/' +
                   d[i] +
-                  '" target="_blank"><span class="tab">' +
-                  d[i] +
-                  "</span></a></li><br>"
+                  '"> </img></li><br>'
               );
             }
             //alert(results);
