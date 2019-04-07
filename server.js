@@ -147,4 +147,48 @@ app.get("/getqr/:id", (req, res) => {
   });
 });
 
+app.get("/searchUser", function(req, res) {
+  res.sendFile(__dirname + "/search.html");
+});
+
+router.route("/searchUser").post(function(req, res) {
+  console.log(req.body);
+  var con = mysql.createConnection({
+    // host: "localhost",
+    host: "toptal.c6ssqxlwfxzg.us-east-2.rds.amazonaws.com",
+    port: "3306",
+    user: "root",
+    password: "password",
+    database: "users"
+  });
+
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var searchName = req.body.fname;
+    var names = searchName.split(" ");
+    var query = "select * from QR where ";
+    for (var i = 0; i < names.length; i++) {
+      query =
+        query +
+        "fname like '%" +
+        names[i] +
+        "%' or lname like '%" +
+        names[i] +
+        "%' or ";
+    }
+    query = query.substring(0, query.length - 3);
+    console.log(query);
+    con.query(query, function(err, result) {
+      console.log(result);
+      var uuIDS = [];
+      for (var i = 0; i < result.length; i++) {
+        uuIDS.push(result[i].uniq_id);
+      }
+      console.log(uuIDS);
+      res.send(uuIDS);
+    });
+  });
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

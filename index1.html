@@ -66,9 +66,12 @@
             alert("Data Stored");
             var uuID = JSON.stringify(d);
             console.log(uuID);
-            alert(uuID);
+            //alert(uuID);
             window.location.replace("/getqr/" + uuID.replace(/"/g, ""));
             // location.reload();
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Image too big. Use image with size less than 100KB");
           }
         });
       }

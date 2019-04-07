@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Untitled Form</title>
+    <style>
+      .left {
+        position: relative;
+        float: left;
+        width: 12%;
+        min-width: 185px;
+      }
+      .subdiv {
+        padding: 3px;
+      }
+      #main_body {
+        widows: 100%;
+      }
+      #form {
+        width: 100%;
+      }
+      #main {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+      function searchUser() {
+        var fname = document.getElementById("element_1_1").value;
+        //alert(fname);
+
+        var formData = {
+          fname: fname
+        };
+        $.ajax({
+          url: "/api/searchUser",
+          type: "post",
+          data: formData,
+          success: function(d) {
+            var results = "";
+            for (var i = 0; i < d.length; i++) {
+              results = results + d[i] + "\n";
+              $("#results ul").append(
+                '<li><a href="/getuser/' +
+                  d[i] +
+                  '" target="_blank"><span class="tab">' +
+                  d[i] +
+                  "</span></a></li><br>"
+              );
+            }
+            //alert(results);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("No results found");
+          }
+        });
+      }
+    </script>
+  </head>
+  <body id="main_body">
+    <form id="form" class="appnitro">
+      <div id="main">
+        <div id="li_1" class="subdiv">
+          <label class="left" class="description" for="element_1">Name </label>
+          <input
+            id="element_1_1"
+            name="element_1_1"
+            class="element text"
+            size="30"
+            value=""
+          />
+          <br />
+        </div>
+      </div>
+      <br />
+      <input id="search" type="button" value="Search" onclick="searchUser()" />
+
+      <div id="results">
+        <ul class="tabs"></ul>
+      </div>
+    </form>
+  </body>
+</html>
