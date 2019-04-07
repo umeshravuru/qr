@@ -1,0 +1,23 @@
+{
+  "name": "qr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "insertToDB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "base64-img": "^1.0.4",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "image-to-base64": "^2.0.1",
+    "mysql": "^2.16.0",
+    "uuid": "^3.3.2"
+  }
+}
