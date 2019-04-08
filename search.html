@@ -42,6 +42,7 @@
           type: "post",
           data: formData,
           success: function(d) {
+            if (d.length == 0) alert("No Results Found.");
             var results = "";
             $("#results ul").empty();
             for (var i = 0; i < d.length; i++) {
