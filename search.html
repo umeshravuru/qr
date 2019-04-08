@@ -43,16 +43,21 @@
           data: formData,
           success: function(d) {
             if (d.length == 0) alert("No Results Found.");
-            var results = "";
-            $("#results ul").empty();
-            for (var i = 0; i < d.length; i++) {
-              results = results + d[i] + "\n";
 
-              $("#results ul").append(
-                '<li><img  src="https://chart.googleapis.com/chart?chs=520x520&cht=qr&chl=http://34.73.175.26:3000/getUser/' +
-                  d[i] +
-                  '"> </img></li><br>'
-              );
+            if (d == "injectAlert") {
+              alert("Injection Alert");
+            } else {
+              var results = "";
+              $("#results ul").empty();
+              for (var i = 0; i < d.length; i++) {
+                results = results + d[i] + "\n";
+
+                $("#results ul").append(
+                  '<li><img  src="https://chart.googleapis.com/chart?chs=520x520&cht=qr&chl=http://34.73.175.26:3000/getUser/' +
+                    d[i] +
+                    '"> </img></li><br>'
+                );
+              }
             }
             //alert(results);
           },

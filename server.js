@@ -168,7 +168,15 @@ router.route("/searchUser").post(function(req, res) {
     var searchName = req.body.fname;
     var names = searchName.split(" ");
     var query = "select * from QR where ";
+    var injectFlag = 0;
     for (var i = 0; i < names.length; i++) {
+      if (
+        names[i].toLowerCase() == "drop" ||
+        names[i].toLowerCase() == "delete" ||
+        names[i].toLowerCase() == "alter"
+      ) {
+        injectFlag = 1;
+      }
       query =
         query +
         "fname like '%" +
@@ -179,15 +187,21 @@ router.route("/searchUser").post(function(req, res) {
     }
     query = query.substring(0, query.length - 3);
     console.log(query);
-    con.query(query, function(err, result) {
-      console.log(result);
-      var uuIDS = [];
-      for (var i = 0; i < result.length; i++) {
-        uuIDS.push(result[i].uniq_id);
-      }
-      console.log(uuIDS);
-      res.send(uuIDS);
-    });
+    console.log(injectFlag);
+    if (injectFlag == 0) {
+      con.query(query, function(err, result) {
+        console.log(result);
+
+        var uuIDS = [];
+        for (var i = 0; i < result.length; i++) {
+          uuIDS.push(result[i].uniq_id);
+        }
+        console.log(uuIDS);
+        res.send(uuIDS);
+      });
+    } else {
+      res.send("injectAlert");
+    }
   });
 });
 
