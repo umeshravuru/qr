@@ -50,7 +50,7 @@ router.route("/postImageToImgur").post(function(req, res) {
       host: "toptal.c6ssqxlwfxzg.us-east-2.rds.amazonaws.com",
       port: "3306",
       user: "root",
-      password: "password",
+      password: "1234567899",
       database: "users"
     });
 
@@ -86,7 +86,7 @@ app.get("/connect/:id", (req, res) => {
     host: "toptal.c6ssqxlwfxzg.us-east-2.rds.amazonaws.com",
     port: "3306",
     user: "root",
-    password: "password",
+    password: "1234567899",
     database: "users"
   });
 
@@ -109,7 +109,7 @@ app.get("/getUser/:id", (req, res) => {
     host: "toptal.c6ssqxlwfxzg.us-east-2.rds.amazonaws.com",
     port: "3306",
     user: "root",
-    password: "password",
+    password: "1234567899",
     database: "users"
   });
 
@@ -158,7 +158,7 @@ router.route("/searchUser").post(function(req, res) {
     host: "toptal.c6ssqxlwfxzg.us-east-2.rds.amazonaws.com",
     port: "3306",
     user: "root",
-    password: "password",
+    password: "1234567899",
     database: "users"
   });
 
